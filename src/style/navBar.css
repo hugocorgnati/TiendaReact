@@ -1,0 +1,14 @@
+.navbar-logo {
+    width: 20%;
+}
+
+.menuOptions li a {
+    margin: 1em;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+}
+
+.menuOptions li:hover {
+    transform: scale(1.1);
+}
