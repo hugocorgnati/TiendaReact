@@ -1,12 +1,23 @@
 import React, { useDebugValue } from 'react'
-import NavBar from './components/NavBar'
-import ItemListContainer from './components/ItemListContainer'
+import AppContainer from './pages/AppContainer';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import UserLayout from './components/UserLayout';
+import Category from './pages/Category';
+import Detail from './pages/ProductDetail/Detail';
 
 const App = () => {
   return (
     <div className='container'>
-      <NavBar />
-      <ItemListContainer greeting="WELCOME TO STUDIO DEVEL SHOP" />
+      <BrowserRouter>
+        <Routes>
+          <Route path={"/"} element={<UserLayout />}>
+            <Route index element={<AppContainer />} />
+            <Route path={"/category/:categoryId"} element={<Category />} />
+            <Route path={"/product/:productId"} element={<Detail />} />
+            <Route path={"/cart"} element={<div>Cart</div>} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

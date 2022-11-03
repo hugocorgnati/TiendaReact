@@ -1,23 +1,35 @@
 import React from 'react'
 import logo from '../assets/img/logo.png'
 import CartWidget from './CartWidget'
-import navBar from '../style/navBar.css'
+import { Link, NavLink } from "react-router-dom"
+import navBar from "../style/navBar.css"
+
 
 
 const NavBar = () => {
+
+    const links = ["Obras", "Objetos"]
+
     return (
-        <header className='navbar navbar-expand-lg'>
-            <div className='container-fluid'>
-                <img src={logo} className='navbar-logo' alt='logo' />
-                <div class="menuOptions">
-                    <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-                        <li className='nav-item'><a href="#">Obras</a></li>
-                        <li className='nav-item'><a href="#">Objetos</a></li>
-                    </ul>
-                </div>
-                <div className='header__buttons'>
-                    <CartWidget />
-                </div>
+        <header className='navbar'>
+            <Link to="/">
+                <img src={logo} className='navbarLogo' alt='logo' />
+            </Link>
+            <div className="navbarNav">
+                {links.map((link) => {
+                    return (
+                        <NavLink
+                            className={({ isActive }) => (isActive ? "navbarLink navbarLinkActive" : "navbarLink")}
+                            to={`/category/${link.toLowerCase()}`}
+                            key={link}
+                        >
+                            {link}
+                        </NavLink>
+                    )
+                })}
+            </div>
+            <div className='headerButtons'>
+                <Link to="/cart"><CartWidget /></Link>
             </div>
         </header>
     )
